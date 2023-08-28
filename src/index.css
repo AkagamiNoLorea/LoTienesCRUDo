@@ -4,11 +4,10 @@
 body{
     background: url('./assets/room.jpeg') no-repeat center fixed;
     text-align: center;
-    --main-red-color: #FF0000;
-    --main-brown-color: #D5D0BA;
-    --main-darkbrown-color: #B5823A;
-    --main-grey-color: #D5D0BA;
-    --main-blue-color: #CCC3AF;
-    --main-darkblue-color: #947966; 
+    --main-light-blue-color: #b9d6f2;
+    --main-dark-blue-color: #061a40;
+    --main-blue1-color: #0353a4;
+    --main-blue2-color: #006daa;
+    --main-blue3-color: #003559;
     font-size: x-large
 }
