@@ -1,7 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import './showCitas.css'
+
 
 
 const url = "http://localhost:8080/citas"

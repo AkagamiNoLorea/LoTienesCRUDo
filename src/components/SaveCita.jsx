@@ -1,13 +1,12 @@
 import {useState} from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import './showCitas.css'
+
 
 
 const url= "http://localhost:8080/Citas"
 
 const SaveCita = () => {
-
 const [nombre, setNombre] = useState('')
 const[ imagen,setImagen] = useState('')
 const [descripcion,setDescripcion] = useState('')

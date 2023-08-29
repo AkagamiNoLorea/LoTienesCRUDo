@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import './showCitas.css'
+
 
 const url = "http://localhost:8080/Citas"
 const DeleteCita = () => {
-
   const [cita, setCita] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

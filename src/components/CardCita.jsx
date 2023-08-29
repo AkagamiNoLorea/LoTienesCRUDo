@@ -1,4 +1,4 @@
-import './showCitas.css'
+
 
 
 export default function CardCita (props) {
