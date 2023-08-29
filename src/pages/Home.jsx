@@ -1,4 +1,4 @@
-import ShowCharacters from "../components/ShowCharacters"
+import ShowCitas from "../components/ShowCitas"
 import { NavLink } from "react-router-dom"
 
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
         <h1>AGENDA</h1>
         <NavLink to ="/create ">
             <button>Añadir cita</button></NavLink></header>
-        <ShowDates />
+        <ShowCitas />
     </div>
   )
 }
