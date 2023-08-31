@@ -3,9 +3,94 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
+const url= "http://localhost:8081/api/v1/citas"
+const EditCita = () => {
+  const [cita, setCita] = useState({});
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { CitaId } = useParams(); 
 
-const url = "http://localhost:8080/Citas"
+  useEffect(() => {
+    const fetchCita = async () => {
+      try {
+        const response = await axios.get(`${url}/${CitaId}`);
+        setCita(response.data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
 
+    fetchCita();
+  }, [CitaId]);
+
+  const handleInputChange = (event) => {
+    setCita({ ...cita, [event.target.name]: event.target.value });
+  };
+
+  const goBack = () => {
+    navigate("/");
+  }
+
+  const handleEditCita = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.put(`${url}/${CitaId}`, cita);
+      navigate('/');
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  return (
+    <div>
+      <div className="form">
+        <h2>Editar Cita</h2>
+        <form onSubmit={handleEditCita}>
+      <div>
+          <label htmlFor="nombre">Nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value={cita.nombre || ''}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="dia">Dia:</label>
+          <input
+            type="text"
+            id="dia"
+            name="dia"
+            value={cita.dia || ''}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="ciudad">Ciudad:</label>
+          <input
+            type="text"
+            id="ciudad"
+            name="ciudad"
+            value={cita.ciudad || ''}
+            onChange={handleInputChange}
+          />
+        </div>
+        <button type="submit">Guardar cambios</button>
+        <button type="button" onClick={goBack}>Cancelar</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+      
+    
+/*
 const EditCita = () => {
   const [cita, setCita] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -59,35 +144,35 @@ const EditCita = () => {
   return (
     <div>
       <div className="form">
-      <h2>Editar Personaje</h2>
+      <h2>Editar Cita</h2>
       <form onSubmit={handleEditCita}>
         <div>
-          <label htmlFor="name">Nombre:</label>
+          <label htmlFor="nombre">Nombre:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={Cita.name || ''}
+            id="nombre"
+            name="nombre"
+            value={cita.nombre || ''}
             onChange={handleInputChange}
           />
         </div>
         <div>
-          <label htmlFor="img">Imagen:</label>
+          <label htmlFor="dia">Dia:</label>
           <input
             type="text"
-            id="img"
-            name="img"
-            value={Cita.img || ''}
+            id="dia"
+            name="dia"
+            value={cita.dia || ''}
             onChange={handleInputChange}
           />
         </div>
         <div>
-          <label htmlFor="description">Descripción:</label>
+          <label htmlFor="ciudad">Ciudad:</label>
           <input
             type="text"
-            id="description"
-            name="description"
-            value={Cita.description || ''}
+            id="ciudad"
+            name="ciudad"
+            value={cita.ciudad || ''}
             onChange={handleInputChange}
           />
         </div>
@@ -98,5 +183,5 @@ const EditCita = () => {
     </div>
   );
 };
-
+*/
 export default EditCita;

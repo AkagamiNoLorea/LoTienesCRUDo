@@ -9,8 +9,10 @@ export default function CardCita (props) {
         <>
         <div className="card">
             <div className="contenedor-datos">
-                <h3>{cita.name}</h3>
-                <p>{cita.description}</p>
+                <h3>{cita.nombre}</h3>
+                <p>{cita.hora}</p>
+                <p>{cita.ciudad}</p>
+                <p>{cita.dia}</p>
             </div>
             <div className="buttons">
                 <button onClick={() => props.editCita(cita) }> Editar </button>

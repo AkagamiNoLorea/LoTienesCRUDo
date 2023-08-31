@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 
-const url = "http://localhost:8080/Citas"
+const url = "http://localhost:8081/api/v1/citas"
 const DeleteCita = () => {
   const [cita, setCita] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -52,8 +52,8 @@ const DeleteCita = () => {
   return (
     <div>
       <div className="form">
-        <h2>Eliminar el personaje {Cita.name} </h2>
-        <p>¿Estás seguro de que quieres eliminar este personaje?</p>
+        <h2>Eliminar la cita {cita.nombre} </h2>
+        <p>¿Estás seguro de que quieres eliminar esta cita?</p>
         <button onClick={handleDeleteCita}>Eliminar</button>
         <button type="button" onClick={goBack}>Cancelar</button>
       </div>

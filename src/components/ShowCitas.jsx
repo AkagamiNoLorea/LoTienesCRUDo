@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CardCita from "./CardCita"
 
 
-const url = "http://localhost:8080/citas"
+const url = "http://localhost:8081/api/v1/citas"
 const ShowCitas = () => {
 
   const [citas, setCitas] = useState([]);
@@ -21,7 +21,7 @@ const ShowCitas = () => {
     setCitas(data);
   }
 
-  // create, read, upCita, delete 
+  // create, read, update, delete 
   const handleEditCita = (cita) => {
     navigate(`/edit/${cita.id}`)
   };
@@ -30,9 +30,9 @@ const ShowCitas = () => {
     navigate(`/delete/${cita.id}`);
   };
 
-  const cards = Citas.map((Cita) => <CardCita 
+  const cards = citas.map((cita) => <CardCita 
                                                         key = {cita.id} 
-                                                        Cita = {cita} 
+                                                        cita = {cita} 
                                                         editCita = { handleEditCita }
                                                         deleteCita = { handleDeleteCita }
                                                      /> );
