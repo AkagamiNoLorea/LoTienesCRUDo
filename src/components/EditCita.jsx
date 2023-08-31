@@ -8,20 +8,21 @@ const EditCita = () => {
   const [cita, setCita] = useState({});
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { CitaId } = useParams(); 
+  const { id } = useParams(); 
 
   useEffect(() => {
     const fetchCita = async () => {
       try {
-        const response = await axios.get(`${url}/${CitaId}`);
+        const response = await axios.get(`${url}/${id}`);
         setCita(response.data);
+        console.log(response.data); 
       } catch (error) {
         setError(error.message);
       }
     };
 
     fetchCita();
-  }, [CitaId]);
+  }, [id]);
 
   const handleInputChange = (event) => {
     setCita({ ...cita, [event.target.name]: event.target.value });
@@ -34,7 +35,7 @@ const EditCita = () => {
   const handleEditCita = async (event) => {
     event.preventDefault();
     try {
-      await axios.put(`${url}/${CitaId}`, cita);
+      await axios.put(`${url}/${id}`, cita);
       navigate('/');
     } catch (error) {
       setError(error.message);
@@ -56,7 +57,7 @@ const EditCita = () => {
             type="text"
             id="nombre"
             name="nombre"
-            value={cita.nombre || ''}
+            value={cita.nombre}
             onChange={handleInputChange}
           />
         </div>
@@ -66,7 +67,7 @@ const EditCita = () => {
             type="text"
             id="dia"
             name="dia"
-            value={cita.dia || ''}
+            value={cita.dia}
             onChange={handleInputChange}
           />
         </div>
@@ -76,7 +77,7 @@ const EditCita = () => {
             type="text"
             id="ciudad"
             name="ciudad"
-            value={cita.ciudad || ''}
+            value={cita.ciudad}
             onChange={handleInputChange}
           />
         </div>
@@ -88,100 +89,4 @@ const EditCita = () => {
   );
 };
 
-      
-    
-/*
-const EditCita = () => {
-  const [cita, setCita] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const { CitaId } = useParams(); 
-
-  useEffect(() => {
-    const fetchCita = async () => {
-      setIsLoading(true);
-      try {
-        const response = await axios.get(`${url}/${citaId}`);
-        setCita(response.data);
-      } catch (error) {
-        setError(error.message);
-      }
-      setIsLoading(false);
-    };
-
-    fetchCita();
-  }, [citaId]);
-
-  const handleInputChange = (event) => {
-    setCita({ ...cita, [event.target.name]: event.target.value });
-  };
-
-  const goBack = () => {
-    navigate("/");
-  }
-
-  const handleEditCita = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-    try {
-      await axios.put(`${url}/${citaId}`, cita);
-      navigate('/');
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(false);
-  };
-
-  if (isLoading) {
-    return <p>Cargando...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
-  return (
-    <div>
-      <div className="form">
-      <h2>Editar Cita</h2>
-      <form onSubmit={handleEditCita}>
-        <div>
-          <label htmlFor="nombre">Nombre:</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            value={cita.nombre || ''}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="dia">Dia:</label>
-          <input
-            type="text"
-            id="dia"
-            name="dia"
-            value={cita.dia || ''}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="ciudad">Ciudad:</label>
-          <input
-            type="text"
-            id="ciudad"
-            name="ciudad"
-            value={cita.ciudad || ''}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button type="submit">Guardar cambios</button>
-        <button type="button" onClick={goBack}>Cancelar</button>
-      </form>
-      </div>
-    </div>
-  );
-};
-*/
 export default EditCita;

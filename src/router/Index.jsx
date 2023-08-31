@@ -10,11 +10,11 @@ export const router = createBrowserRouter([
         element: <SaveCita/>
     },
     {
-        path: "/edit/:citaId",
+        path: "/edit/:id",
         element: <EditCita/>
     },
     {
-        path: "/delete/:citaId",
+        path: "/delete/:id",
         element: <DeleteCita/>
     },
     {

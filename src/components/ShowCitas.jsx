@@ -13,7 +13,7 @@ const ShowCitas = () => {
   useEffect(() => {
     getAllCitas()
   }, [])
- 
+
 
   const getAllCitas = async () => {
     const response = await axios.get(url)
@@ -26,21 +26,21 @@ const ShowCitas = () => {
     navigate(`/edit/${cita.id}`)
   };
 
-  const handleDeleteCita = (cita) => {    
+  const handleDeleteCita = (cita) => {
     navigate(`/delete/${cita.id}`);
   };
 
-  const cards = citas.map((cita) => <CardCita 
-                                                        key = {cita.id} 
-                                                        cita = {cita} 
-                                                        editCita = { handleEditCita }
-                                                        deleteCita = { handleDeleteCita }
-                                                     /> );
-  
+  const cards = citas.map((cita) => <CardCita
+    key={cita.id}
+    cita={cita}
+    editCita={handleEditCita}
+    deleteCita={handleDeleteCita}
+  />);
+
   return (
     <>
       <div className="box">
-        { 
+        {
           cards
         }
       </div>
